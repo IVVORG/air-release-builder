@@ -54,7 +54,7 @@ function repoHasRC {
          curdt=$(date -d "${curstrdate:0:8} ${curstrdate:8:2}:${curstrdate:10:2}" +"%s")
          newdt=$(date -d "${strdate:0:8} ${strdate:8:2}:${strdate:10:2}" +"%s")
          if [ "$newdt" -gt "$curdt" ]; then 
-           lasttag="$curstrdate"
+           lasttag="$strdate"
            break
          fi
          break
@@ -137,9 +137,8 @@ if [[ $lasttag == "1" ]]; then
     exit 1
 else
     echo "New rc tag $lasttag"
-    exit 0
 fi
 
-#updateSync1 $pack $prepotag
+updateSync $pack $lasttag
 
 
