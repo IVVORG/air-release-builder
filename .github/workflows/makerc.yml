@@ -1,0 +1,14 @@
+name: Go
+on: 
+  push:
+    paths-ignore:
+      - '.github/**' 
+
+jobs:
+  
+  call-workflow-cd:
+    uses: ./.github/workflows/cd.yml 
+    secrets:
+      git_token: ${{ secrets.REPOREADING_TOKEN }}
+
+
