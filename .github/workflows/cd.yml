@@ -27,3 +27,19 @@ jobs:
       run: |
         chmod +x ./.github/scripts/update-config-rc.sh
         bash ./.github/scripts/update-config-rc.sh
+
+    - name: Commit files
+      run: |
+        cd airs-config-sync
+        git config --local user.email "v.istratenko@dev.untill.com"
+        git config --local user.name "upload-robot"
+        git commit -a -m "Update RC date"
+
+    - name: Push changes 
+      uses: ad-m/github-push-action@master
+      with:
+        directory: airs-config-sync
+        repository: ivvorg/airs-config-sync
+        branch: "main"
+        github_token: ${{ secrets.git_token }}
+
