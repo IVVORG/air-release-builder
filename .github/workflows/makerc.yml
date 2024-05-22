@@ -29,9 +29,8 @@ jobs:
         done        
 
   call-workflow-cd:
-    runs-on: ubuntu-latest
     needs: analisys
-    if: ${{ needs.analisys.outputs.modify.outputs.need == 'true' }}
+    if: ( ${{ needs.analisys.outputs.modify.outputs.need }} == 'true' )
     uses: ./.github/workflows/cd.yml 
     secrets:
       git_token: ${{ secrets.REPOREADING_TOKEN }}
