@@ -78,15 +78,15 @@ function updateSync {
   echo "update tagvalue: $tagvalue"
   packfound=0
   while read -r line; do
-    i=$((i+1))
     if [ $packfound -eq 0 ]; then 
      if [[ $line =~ "pack: $pack" ]]; then
   	packfound=1	
      fi 
     else
        if [[ $line =~ "$reptag:" ]]; then
-       # Extract the date using grep and sed
+         echo "found create:"
          sed -i "${i}s/.*$reptag.*/      $reptag: $tagvalue/" ${stackfile}
+         echo "replaced with $reptag: $tagvalue in file $stackfile"
          break
        fi
     fi
